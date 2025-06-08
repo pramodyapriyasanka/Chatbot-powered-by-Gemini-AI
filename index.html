@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot Powered by Gemini AI</title>
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" href="gemini-chatbot-logo.svg" type="image/svg+xml" />
+  
+  <!-- Optional PNG fallback (uncomment if you have a PNG favicon) -->
+  <!-- <link rel="icon" href="gemini-chatbot-logo.png" type="image/png" /> -->
+
+  <!-- Material Symbols Rounded icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  
+  <div class="container">
+    <header class="app-header">
+      <h1 class="heading">Hi Pramodya</h1>
+      <h2 class="sub-heading">How can I help you?</h2>
+    </header>
+
+  
+
+    <!-- Suggestions list -->
+    <ul class="suggestions">
+      <li class="suggestions-item">
+        <p class="text">What are some AI tools that can boost productivity?</p>
+        <span class="material-symbols-rounded">draw</span>
+      </li>
+      <li class="suggestions-item">
+        <p class="text">Help me write a professional resume for a data analyst job</p>
+        <span class="material-symbols-rounded">explore</span>
+      </li>
+      <li class="suggestions-item">
+        <p class="text">Explain how blockchain works in simple terms</p>
+        <span class="material-symbols-rounded">flash_on</span>
+      </li>
+      <li class="suggestions-item">
+        <p class="text">Generate a weekly meal plan for a vegetarian diet</p>
+        <span class="material-symbols-rounded">code_blocks</span>
+      </li>
+    </ul>
+
+    <!-- Chats container -->
+    <div class="chats-container">
+      <div class="message user-message">
+        <p class="message-text">Can you tell me about your services?</p>
+      </div>
+      <div class="message bot-message">
+        <img src="gemini-chatbot-logo.svg" alt="Chatbot Avatar" class="avatar" />
+        <p class="message-text">
+          
+        </p>
+      </div>
+    </div>
+
+    <!-- Prompt Container -->
+    <input type="file" id="image-upload-input" accept="image/*" style="display:none" />
+
+    <div class="prompt-container">
+      <div class="prompt-wrapper">
+
+        <!-- Hidden file input for image upload -->
+        <input type="file" id="image-upload-input" accept="image/*" style="display:none" />
+
+        <!-- Form for message input and send -->
+        <form action="" class="prompt-form">
+          <input type="text" placeholder="Ask Gemini" class="prompt-input" required />
+          <div class="prompt-actions">
+            <button type="button" id="stop-response-btn" class="material-symbols-rounded">stop_circle</button>
+            <button id="send-promt-btn" class="material-symbols-rounded">arrow_upward</button>
+          </div>
+        </form>
+
+        <!-- Preview container for image before sending -->
+        <div id="image-preview-container"></div>
+
+        <!-- Other controls -->
+        <button type="theme-toggle-btn" class="material-symbols-rounded">light_mode</button>
+        <button id="delete-chats-btn" class="material-symbols-rounded">delete</button>
+      </div>
+
+      <p class="disclaimer-text">This chatbot can make mistakes, so double-check it.</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

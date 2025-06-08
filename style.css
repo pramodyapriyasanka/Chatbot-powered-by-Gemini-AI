@@ -1,0 +1,543 @@
+/*Importing Google fonts poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --text-color: #edf3ff;
+    --subheading-color: #97a7ca;
+    --placeholder-color: #c3cdde;
+    --primary-color: #101623;
+    --secondary-color: #283045;
+    --secondary-hover-color: #333e58;
+    --scrollbar-color: #626a7f;
+}
+
+body {
+    color: var(--text-color);
+    background: var(--primary-color);
+}
+
+.container {
+    padding: 32px 0 60px;
+}
+
+.container :where(.app-header, .suggestions, .message, .prompt-wrapper, .disclaimer-text) {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 980px;
+}
+
+/*App header stylings*/
+.container .app-header {
+    margin-top: 4vh;
+}
+
+.app-header .heading {
+    font-size: 3rem;
+    width: fit-content;
+    background: linear-gradient(to right, #1d7efd,
+    #8f6fff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header .sub-heading {
+    font-size: 2.6rem;
+    margin-top: -5px;
+    color: var(--subheading-color);
+}
+
+/*Suggestions list styling*/
+.container .suggestions {
+    display: flex;
+    gap: 15px;
+    margin-top: 9.5vh;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.container :is(.app-header, .suggestions) {
+    /* Assuming these are hidden initially and shown later by JS based on chat activity */
+    display: none;
+}
+
+
+
+.suggestions .suggestions-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 228px;
+    padding: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 12px;
+    background: var(--secondary-color);
+    transition: 0.3s ease;
+}
+
+.suggestions .suggestions-item:hover {
+    background: var(--secondary-hover-color);
+}
+
+
+.suggestions .suggestions-item .text {
+    font-size: 1.1rem;
+}
+
+.suggestions .suggestions-item span {
+    height: 45px;
+    width: 45px;
+    margin-top: 35px;
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    border-radius:50%;
+    color: #1d7efd;
+    background: var(--primary-color);
+}
+
+.suggestions .suggestions-item:nth-child(2) span {
+    color: #28a745;
+}
+
+.suggestions .suggestions-item:nth-child(3) span {
+    color: #ffc107;
+}
+
+.suggestions .suggestions-item:nth-child(4) span {
+    color: #6f42c1;
+}
+
+/*Chats Container styling*/
+
+.container .chats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Added for scrollability */
+    max-height: calc(100vh - 200px); /* Adjust based on your header/footer size */
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px; /* Space above prompt container */
+}
+
+
+.chats-container .message{
+    display: flex;
+    gap: 11px;
+    align-items: center;
+}
+
+.chats-container .bot-message .avatar {
+    height: 43px;
+    width: 43px;
+    flex-shrink: 0;
+    padding: 6px;
+    align-self: flex-start;
+    margin-right: -7px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    border: 1px solid var(--secondary-hover-color);
+}
+
+.chats-container .bot-message.loading .avatar {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.chats-container .message .message-text {
+    padding: 3px 16px;
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.chats-container .bot-message{
+    margin: 9px auto;
+}
+
+.chats-container .user-message {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.chats-container .user-message .message-text {
+    padding: 12px 16px;
+    max-width: 75%;
+    border-radius: 13px 13px 3px 13px;
+    background: var(--secondary-color);
+}
+
+/* Styles for user-uploaded image in chat history */
+.chats-container .user-message .user-image-preview {
+    max-width: 150px; /* Adjust size as desired */
+    max-height: 150px;
+    border-radius: 8px;
+    margin-bottom: 10px; /* Space between image and text */
+    object-fit: contain; /* Ensure the whole image is visible */
+    align-self: flex-end; /* Align with the message text */
+}
+
+
+/*prompt container styling*/
+.prompt-container{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 0;
+    background: var(--primary-color);
+    border-top: 1px solid var(--secondary-color); /* Add a subtle separator */
+}
+
+.prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-actions) {
+    display: flex;
+    gap: 12px;
+    height: 56px;
+    align-items: center;
+}
+
+.prompt-wrapper .prompt-form{
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-color);
+    border-radius: 130px;
+    position: relative; /* Needed for positioning the file upload wrapper */
+    overflow: hidden; /* Hide anything overflowing the rounded corners */
+}
+
+.prompt-form .prompt-input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding-left: 24px;
+    color: var(--text-color);
+    /* Adjust padding to make space for file upload wrapper when active */
+    padding-right: 120px; /* Adjust as needed */
+}
+
+.prompt-form .prompt-input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.prompt-wrapper button {
+    width: 56px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    color: var(--text-color);
+    background: var(--secondary-color);
+    transition: 0.3s ease;
+}
+
+.prompt-wrapper button:hover {
+    background: var(--secondary-hover-color);
+}
+
+
+.prompt-form .prompt-actions {
+    gap: 5px;
+    margin-right: 3px;
+    position: absolute; /* Position actions inside the form */
+    right: 0;
+    height: 100%;
+    padding-right: 8px; /* Give some space from the right edge */
+}
+
+/* --- File Upload Wrapper Styles (without preview) --- */
+.prompt-form .file-upload-wrapper {
+    display: flex; /* Always display flex to center the icon */
+    align-items: center;
+    justify-content: center; /* Center the attachment icon */
+    gap: 5px;
+    padding: 0; /* No padding needed for preview */
+    height: 100%;
+    width: 45px; /* Fixed width for the attachment icon */
+    background: transparent; /* No background needed */
+    border-radius: 50%;
+    flex-shrink: 0; /* Don't shrink */
+    position: relative; /* For the button styling to apply correctly */
+}
+
+/* Hide the image preview element - it's no longer used for preview */
+.prompt-form .file-upload-wrapper .file-review {
+    display: none;
+}
+
+/* Always show the add file button */
+.prompt-form .file-upload-wrapper #add-file-btn {
+    display: block; /* Always show the attachment icon */
+    background: var(--secondary-color); /* Apply button background */
+    color: var(--text-color);
+    height: 45px; /* Match other buttons */
+    width: 45px; /* Match other buttons */
+    border-radius: 50%; /* Make it round */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hide the cancel button, it's not needed without preview */
+.prompt-form .file-upload-wrapper #cancel-file-btn {
+    display: none;
+}
+
+/* Ensure the file input itself is completely hidden */
+#image-upload-input {
+    display: none !important;
+}
+
+
+.prompt-form #send-promt-btn {
+    color: #fff;
+    display: none; /* Hidden by default, shown when input is valid */
+    background: #1d7efd;
+    position: relative; /* Adjust positioning within prompt-actions */
+    z-index: 10; /* Ensure it's above other elements if needed */
+}
+
+.prompt-form .prompt-input:valid ~ .prompt-actions #send-promt-btn {
+    display: block; /* Show send button when text input is valid */
+}
+
+
+.prompt-form #send-promt-btn:hover {
+    background: #0264e3;
+}
+
+.prompt-container .disclaimer-text {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 16px 20px 0;
+    color: var(--placeholder-color);
+}
+
+/* Added chat container scrolling */
+.chats-container {
+    overflow-y: auto;
+    max-height: calc(100vh - 200px); /* Adjust this value based on your header/footer heights */
+    scroll-behavior: smooth;
+    padding: 0 20px 20px; /* Add padding to match others and bottom space */
+}
+
+.message-text {
+    white-space: pre-wrap; /* Ensures line breaks in messages are preserved */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .app-header .heading {
+        font-size: 2.5rem;
+    }
+
+    .app-header .sub-heading {
+        font-size: 2rem;
+    }
+
+    .suggestions {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+
+    .suggestions .suggestions-item {
+        width: 180px; /* Smaller suggestion items */
+        padding: 15px;
+    }
+
+    .chats-container {
+        max-height: calc(100vh - 180px); /* Adjust chat height for smaller screens */
+        padding: 0 10px 10px;
+    }
+
+    .prompt-container {
+        padding: 10px 0;
+    }
+
+    .prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-actions) {
+        height: 50px; /* Slightly smaller input area */
+    }
+
+    .prompt-form .prompt-input {
+        font-size: 0.9rem;
+        padding-left: 15px;
+        padding-right: 100px; /* Adjust for smaller buttons */
+    }
+
+    .prompt-wrapper button {
+        width: 48px;
+        font-size: 1rem;
+    }
+
+    .prompt-form .file-upload-wrapper {
+        width: 40px; /* Adjust for smaller screens */
+    }
+
+    .prompt-form .file-upload-wrapper #add-file-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-header .heading {
+        font-size: 2rem;
+    }
+
+    .app-header .sub-heading {
+        font-size: 1.6rem;
+    }
+
+    .suggestions .suggestions-item {
+        width: 150px; /* Even smaller suggestion items */
+        padding: 12px;
+    }
+
+    .chats-container {
+        max-height: calc(100vh - 150px);
+    }
+
+    .prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-actions) {
+        height: 45px;
+    }
+
+    .prompt-form .prompt-input {
+        padding-right: 90px;
+    }
+}
+
+/* Initial state: invisible and shifted down */
+.app-header h1, 
+.app-header h2 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+/* Animate h1 first */
+.app-header h1 {
+  animation-name: fadeSlideUp;
+  animation-delay: 0.3s;
+}
+
+/* Animate h2 shortly after h1 */
+.app-header h2 {
+  animation-name: fadeSlideUp;
+  animation-delay: 0.8s;
+}
+
+.suggestions .suggestions-item {
+    animation-name: fadeSlideUp;
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestions .suggestions-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.6s ease-out 0.8s forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.chats-container {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.prompt-form #stop-response-btn {
+  display: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.prompt-form #stop-response-btn:hover {
+  color: #d62939;
+}
+
+
+
+
+/*Light Theme */
+:root {
+  --text-color: #222831;
+  --subheading-color: #555f77;
+  --placeholder-color: #a0a9bf;
+  --primary-color: #f7f9fc;
+  --secondary-color: #d9e0ee;
+  --secondary-hover-color: #bcc7de;
+  --scrollbar-color: #a0a9bf;
+  --background-color: var(--primary-color);
+  --button-text-color: var(--text-color);
+}
+
+/* Default Dark Theme */
+body.dark-theme {
+  --text-color: #edf3ff;
+  --subheading-color: #97a7ca;
+  --placeholder-color: #c3cdde;
+  --primary-color: #101623;
+  --secondary-color: #283045;
+  --secondary-hover-color: #333e58;
+  --scrollbar-color: #626a7f;
+  --background-color: var(--primary-color);
+  --button-text-color: var(--text-color);
+}
+
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button {
+  color: var(--button-text-color);
+  /* other button styles */
+}
+
+
