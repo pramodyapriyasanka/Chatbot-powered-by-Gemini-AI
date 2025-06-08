@@ -33,9 +33,11 @@ A smart, AI-powered chatbot built using Gemini AI technology to provide interact
 
 ## Demo
 
-![image](https://github.com/user-attachments/assets/18074c17-0be8-4401-a31c-61b78be8d109)
-![image](https://github.com/user-attachments/assets/258b704b-abef-45cb-b92d-7212a09cea94)
-![image](https://github.com/user-attachments/assets/5ff23444-033a-4c18-9071-fcdf60f30714)
+![image](https://github.com/user-attachments/assets/4fae5f72-349a-41dd-a1e5-4ddb6bb43990)
+![image](https://github.com/user-attachments/assets/f59fa05c-26b3-4ae5-9e67-1db8e90e8d88)
+![image](https://github.com/user-attachments/assets/0660ecbc-e1d9-459d-9ae1-bc1a8a705e32)
+
+
 
 
 
